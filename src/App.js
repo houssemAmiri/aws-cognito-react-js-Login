@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
+import { Auth } from "aws-amplify";
 
 import Modal from "./Components/modal";
 import "./App.css";
@@ -8,7 +9,7 @@ function App() {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
 
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState("");
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -21,6 +22,14 @@ function App() {
     if (authState === AuthState.SignedIn) {
       console.log("d5al");
       setIsOpen(false);
+      Auth.currentSession().then((res) => {
+        let accessToken = res.getAccessToken();
+        let jwt = accessToken.getJwtToken();
+        //You can print them to see the full objects
+        //console.log(`myAccessToken: ${JSON.stringify(accessToken)}`);
+        setToken(jwt);
+        //console.log(`myJwt: ${jwt}`);
+      });
     }
     console.log("this authstate", authState);
   }, [authState]);
@@ -39,7 +48,8 @@ function App() {
         {authState === AuthState.SignedIn && user ? (
           <>
             <AmplifySignOut />
-            <h1>This is your token: {token}</h1>
+            <p>This is your token:</p>
+            <p>{JSON.stringify(token)}</p>
           </>
         ) : (
           <button onClick={openModal}>Login</button>

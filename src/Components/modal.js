@@ -1,10 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import {
-  AmplifySignUp,
-  AmplifyAuthenticator,
-  AmplifySignOut,
-} from "@aws-amplify/ui-react";
+import { AmplifySignUp, AmplifyAuthenticator } from "@aws-amplify/ui-react";
 import { AuthState } from "@aws-amplify/ui-components";
 
 const customStyles = {
