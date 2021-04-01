@@ -1,7 +1,12 @@
 import React from "react";
 import Modal from "react-modal";
-import { AmplifySignUp, AmplifyAuthenticator } from "@aws-amplify/ui-react";
+import {
+  AmplifySignUp,
+  AmplifyAuthenticator,
+  AmplifyGreetings,
+} from "@aws-amplify/ui-react";
 import { AuthState } from "@aws-amplify/ui-components";
+import logo from "../logo.svg";
 
 const customStyles = {
   content: {
@@ -27,10 +32,9 @@ function modal({ modalIsOpen, closeModal, subtitle }) {
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <button onClick={closeModal}>close</button>
         <div>
-          {" "}
           <AmplifyAuthenticator initialAuthState={AuthState.SignUp}>
             <AmplifySignUp
-              headerText="Sign Up"
+              headerText="hedhi registration :p can you make registration balise :p "
               usernameAlias="email"
               slot="sign-up"
             ></AmplifySignUp>
