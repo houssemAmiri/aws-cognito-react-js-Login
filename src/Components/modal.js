@@ -1,6 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Modal from "react-modal";
+import {
+  AmplifySignUp,
+  AmplifyAuthenticator,
+  AmplifySignOut,
+} from "@aws-amplify/ui-react";
+import { AuthState } from "@aws-amplify/ui-components";
 
 const customStyles = {
   content: {
@@ -12,10 +17,8 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
-
-// Make sure to bind modal to your appElement (http://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
-export default function modal({ modalIsOpen, closeModal, subtitle }) {
+function modal({ modalIsOpen, closeModal, subtitle }) {
   return (
     <div>
       <Modal
@@ -27,15 +30,18 @@ export default function modal({ modalIsOpen, closeModal, subtitle }) {
       >
         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
         <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form>
+        <div>
+          {" "}
+          <AmplifyAuthenticator initialAuthState={AuthState.SignUp}>
+            <AmplifySignUp
+              headerText="Sign Up"
+              usernameAlias="email"
+              slot="sign-up"
+            ></AmplifySignUp>
+          </AmplifyAuthenticator>
+        </div>
       </Modal>
     </div>
   );
 }
+export default modal;
