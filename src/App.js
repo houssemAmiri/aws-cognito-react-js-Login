@@ -1,4 +1,5 @@
-import logo from "./logo.svg";
+import React, { useState } from "react";
+
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 
 import "./App.css";
@@ -7,14 +8,15 @@ import awsconfig from "./aws-exports";
 Amplify.configure(awsconfig);
 
 function App() {
+  const [logged, setLogged] = useState(false);
+  const [token, setToken] = useState(null);
   return (
     <div className="App">
       <header className="App-header">
-        <AmplifySignOut />
-        My App
+        {logged ? <h1>This is your token: {token}</h1> : <button>Login</button>}
       </header>
     </div>
   );
 }
 
-export default withAuthenticator(App);
+export default App;
