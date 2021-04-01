@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import { Auth } from "aws-amplify";
 
-import Modal from "./Components/modal";
+import ModalComp from "./Components/ModalComp";
 import "./App.css";
 import { AmplifySignOut } from "@aws-amplify/ui-react";
 function App() {
@@ -52,10 +52,12 @@ function App() {
             <p>{JSON.stringify(token)}</p>
           </>
         ) : (
-          <button onClick={openModal}>Login</button>
+          <button className="cancelbtn" onClick={openModal}>
+            Login
+          </button>
         )}
       </header>
-      <Modal
+      <ModalComp
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
         openModal={openModal}
