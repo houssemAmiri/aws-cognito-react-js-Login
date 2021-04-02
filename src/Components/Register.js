@@ -29,7 +29,7 @@ export default function Register({ closeModal, setLogin, login }) {
       <div className="imgcontainer">
         <img src={logo} alt="Avatar" className="avatar" />
       </div>
-      {error && <span>{error}</span>}
+      {error && <span className="error">{error}</span>}
 
       <div className="container">
         <label htmlFor="uname">
@@ -63,7 +63,10 @@ export default function Register({ closeModal, setLogin, login }) {
           Cancel
         </button>
         <span className="psw">
-          Have you an account <a onClick={() => setLogin(!login)}>Sign in?</a>
+          Have you an account{" "}
+          <span className="link" onClick={() => setLogin(!login)}>
+            Sign in?
+          </span>
         </span>
       </div>
     </form>

@@ -1,13 +1,9 @@
 import React from "react";
 import Modal from "react-modal";
-import {
-  AmplifySignUp,
-  AmplifyAuthenticator,
-  AmplifyGreetings,
-} from "@aws-amplify/ui-react";
-import { AuthState } from "@aws-amplify/ui-components";
 import Login from "./Login";
 import Register from "./Register";
+
+// Modal configuration
 const customStyles = {
   content: {
     top: "50%",
@@ -19,6 +15,7 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
+
 function ModalComp({
   modalIsOpen,
   closeModal,
@@ -31,22 +28,12 @@ function ModalComp({
     <div>
       <Modal
         isOpen={modalIsOpen}
-        // onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
         <h2>{login ? `Please login` : `please register`}</h2>
         <div>
-          {/*
-          <AmplifyAuthenticator initialAuthState={AuthState.SignUp}>
-            <AmplifySignUp
-              headerText="hedhi registration :p can you make registration balise :p "
-              usernameAlias="email"
-              slot="sign-up"
-            ></AmplifySignUp>
-          </AmplifyAuthenticator>
-                */}
           {login ? (
             <Login
               closeModal={closeModal}

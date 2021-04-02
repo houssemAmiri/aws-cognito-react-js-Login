@@ -31,7 +31,7 @@ export default function Confirm({
         <img src={logo} alt="Avatar" className="avatar" />
       </div>
       <h1>Confirmation</h1>
-      {error && <span>{error}</span>}
+      {error && <span className="error">{error}</span>}
 
       <div className="container">
         <label htmlFor="uname">
@@ -65,14 +65,15 @@ export default function Confirm({
         </button>
         <span className="psw">
           You wan't to register again ?{" "}
-          <a
+          <span
+            className="link"
             onClick={() => {
               setRegister(false);
               setConfirm(false);
             }}
           >
             Register?
-          </a>
+          </span>
         </span>
       </div>
     </form>

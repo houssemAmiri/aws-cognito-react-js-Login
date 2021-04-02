@@ -1,7 +1,8 @@
 import React from "react";
+import { signIn } from "../lib/aws-auth";
 import "../App.css";
 import logo from "../logo.svg";
-import { signIn } from "../lib/aws-auth";
+
 export default function Login({
   closeModal,
   setRegister,
@@ -17,7 +18,6 @@ export default function Login({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     signIn(
       email,
       password,
@@ -34,7 +34,7 @@ export default function Login({
       <div className="imgcontainer">
         <img src={logo} alt="Avatar" className="avatar" />
       </div>
-      {error && <span>{error}</span>}
+      {error && <span className="error">{error}</span>}
 
       <div className="container">
         <label htmlFor="uname">
@@ -67,7 +67,9 @@ export default function Login({
         </button>
         <span className="psw">
           You don't Have an account ?{" "}
-          <a onClick={() => setRegister(!login)}>Register?</a>
+          <span className="link" onClick={() => setRegister(!login)}>
+            Register?
+          </span>
         </span>
       </div>
     </form>
