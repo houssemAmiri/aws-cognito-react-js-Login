@@ -19,7 +19,13 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
-function ModalComp({ modalIsOpen, closeModal, subtitle }) {
+function ModalComp({
+  modalIsOpen,
+  closeModal,
+  setAuthState,
+  setUser,
+  setToken,
+}) {
   const [login, setLogin] = React.useState(false);
   return (
     <div>
@@ -46,6 +52,9 @@ function ModalComp({ modalIsOpen, closeModal, subtitle }) {
               closeModal={closeModal}
               setRegister={setLogin}
               login={login}
+              setAuthState={setAuthState}
+              setUser={setUser}
+              setToken={setToken}
             />
           ) : (
             <Register

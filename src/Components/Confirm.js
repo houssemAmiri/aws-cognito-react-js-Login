@@ -1,32 +1,28 @@
 import React from "react";
 import "../App.css";
 import logo from "../logo.svg";
-import { signIn } from "../lib/aws-auth";
-export default function Login({
+import { confirmSignUp } from "../lib/aws-auth";
+export default function Confirm({
   closeModal,
   setRegister,
   login,
-  setAuthState,
-  setUser,
-  setToken,
+  confirm,
+  setConfirm,
 }) {
+  const [confirmationCode, setConfirmationCode] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    signIn(
+    confirmSignUp(
       email,
-      password,
-      closeModal,
-      setAuthState,
-      setUser,
+      confirmationCode,
+      setConfirm,
+      setRegister,
       setError,
-      setLoading,
-      setToken
+      setLoading
     );
   };
   return (
@@ -34,6 +30,7 @@ export default function Login({
       <div className="imgcontainer">
         <img src={logo} alt="Avatar" className="avatar" />
       </div>
+      <h1>Confirmation</h1>
       {error && <span>{error}</span>}
 
       <div className="container">
@@ -42,23 +39,24 @@ export default function Login({
         </label>
         <input
           type="text"
-          placeholder="Enter Username"
+          placeholder="Enter Email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <label htmlFor="psw">
-          <b>Password</b>
+        <label htmlFor="uname">
+          <b>code confirmation</b>
         </label>
         <input
-          type="password"
-          placeholder="Enter Password"
-          name="psw"
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          placeholder="Enter confirmation code"
+          name="confirmation_code"
+          onChange={(e) => setConfirmationCode(e.target.value)}
           required
         />
         <button type="submit" disabled={loading}>
-          {loading ? `Loading ....` : `Login`}
+          {" "}
+          {loading ? `Loading ....` : `Confirm`}
         </button>
       </div>
       <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
@@ -66,8 +64,15 @@ export default function Login({
           Cancel
         </button>
         <span className="psw">
-          You don't Have an account ?{" "}
-          <a onClick={() => setRegister(!login)}>Register?</a>
+          You wan't to register again ?{" "}
+          <a
+            onClick={() => {
+              setRegister(false);
+              setConfirm(false);
+            }}
+          >
+            Register?
+          </a>
         </span>
       </div>
     </form>
