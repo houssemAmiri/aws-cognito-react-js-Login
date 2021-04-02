@@ -2,7 +2,7 @@ import React from "react";
 import Modal from "react-modal";
 import Login from "./Login";
 import Register from "./Register";
-
+import { ModalText } from "../constants/text";
 // Modal configuration
 const customStyles = {
   content: {
@@ -30,9 +30,8 @@ function ModalComp({
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
       >
-        <h2>{login ? `Please login` : `please register`}</h2>
+        <h2>{login ? ModalText.LOGIN : ModalText.REGISTER}</h2>
         <div>
           {login ? (
             <Login

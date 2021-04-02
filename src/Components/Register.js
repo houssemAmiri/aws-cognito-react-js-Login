@@ -3,6 +3,8 @@ import "../App.css";
 import logo from "../logo.svg";
 import { signUp } from "../lib/aws-auth";
 import Confirm from "./Confirm";
+import { Form, ModalText, RegisterText } from "../constants/text";
+
 export default function Register({ closeModal, setLogin, login }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -12,8 +14,7 @@ export default function Register({ closeModal, setLogin, login }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("this is email", email);
-    console.log("this is password", password);
+
     signUp(email, password, email, confirm, setConfirm, setError, setLoading);
   };
   return confirm ? (
@@ -33,21 +34,21 @@ export default function Register({ closeModal, setLogin, login }) {
 
       <div className="container">
         <label htmlFor="uname">
-          <b>Email</b>
+          <b>{Form.EMAIL_LABEL}</b>
         </label>
         <input
           type="text"
-          placeholder="Enter Username"
+          placeholder={Form.EMAIL_PLACEHOLDER}
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <label htmlFor="psw">
-          <b>Password</b>
+          <b>{Form.PASSWORD_LABEL}</b>
         </label>
         <input
           type="password"
-          placeholder="Enter Password"
+          placeholder={Form.PASSWORD_PLACEHOLDER}
           name="psw"
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -55,17 +56,17 @@ export default function Register({ closeModal, setLogin, login }) {
 
         <button type="submit" disabled={loading}>
           {" "}
-          {loading ? `Loading ....` : `Register`}
+          {loading ? Form.LOADING : RegisterText.BUTTON}
         </button>
       </div>
       <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
         <button type="button" className="cancelbtn" onClick={closeModal}>
-          Cancel
+          {ModalText.CANCEL}
         </button>
         <span className="psw">
-          Have you an account{" "}
+          {RegisterText.SUGGESTION}
           <span className="link" onClick={() => setLogin(!login)}>
-            Sign in?
+            {RegisterText.LINK}
           </span>
         </span>
       </div>

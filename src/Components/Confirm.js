@@ -2,6 +2,8 @@ import React from "react";
 import "../App.css";
 import logo from "../logo.svg";
 import { confirmSignUp } from "../lib/aws-auth";
+import { Form, ModalText, ConfirmationText } from "../constants/text";
+
 export default function Confirm({
   closeModal,
   setRegister,
@@ -30,41 +32,41 @@ export default function Confirm({
       <div className="imgcontainer">
         <img src={logo} alt="Avatar" className="avatar" />
       </div>
-      <h1>Confirmation</h1>
+      <h1>{ConfirmationText.TITLE}</h1>
       {error && <span className="error">{error}</span>}
 
       <div className="container">
         <label htmlFor="uname">
-          <b>Email</b>
+          <b>{Form.EMAIL_LABEL}</b>
         </label>
         <input
           type="text"
-          placeholder="Enter Email"
+          placeholder={Form.EMAIL_PLACEHOLDER}
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <label htmlFor="uname">
-          <b>code confirmation</b>
+          <b>{Form.CONFIRMATION_CODE_LABEL}</b>
         </label>
         <input
           type="text"
-          placeholder="Enter confirmation code"
+          placeholder={Form.CONFIRMATION_CODE_PLACEHOLDER}
           name="confirmation_code"
           onChange={(e) => setConfirmationCode(e.target.value)}
           required
         />
         <button type="submit" disabled={loading}>
           {" "}
-          {loading ? `Loading ....` : `Confirm`}
+          {loading ? Form.LOADING : `Confirm`}
         </button>
       </div>
       <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
         <button type="button" className="cancelbtn" onClick={closeModal}>
-          Cancel
+          {ModalText.CANCEL}
         </button>
         <span className="psw">
-          You wan't to register again ?{" "}
+          {ConfirmationText.SUGGESTION}{" "}
           <span
             className="link"
             onClick={() => {
@@ -72,7 +74,7 @@ export default function Confirm({
               setConfirm(false);
             }}
           >
-            Register?
+            {ConfirmationText.LINK}
           </span>
         </span>
       </div>

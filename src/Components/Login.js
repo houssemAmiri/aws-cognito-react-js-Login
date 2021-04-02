@@ -2,6 +2,7 @@ import React from "react";
 import { signIn } from "../lib/aws-auth";
 import "../App.css";
 import logo from "../logo.svg";
+import { Form, ModalText, LoginText } from "../constants/text";
 
 export default function Login({
   closeModal,
@@ -38,37 +39,37 @@ export default function Login({
 
       <div className="container">
         <label htmlFor="uname">
-          <b>Email</b>
+          <b>{Form.EMAIL_LABEL}</b>
         </label>
         <input
           type="text"
-          placeholder="Enter Username"
+          placeholder={Form.EMAIL_PLACEHOLDER}
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
         <label htmlFor="psw">
-          <b>Password</b>
+          <b>{Form.PASSWORD_LABEL}</b>
         </label>
         <input
           type="password"
-          placeholder="Enter Password"
+          placeholder={Form.PASSWORD_PLACEHOLDER}
           name="psw"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit" disabled={loading}>
-          {loading ? `Loading ....` : `Login`}
+          {loading ? Form.LOADING : LoginText.BUTTON}
         </button>
       </div>
       <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
         <button type="button" className="cancelbtn" onClick={closeModal}>
-          Cancel
+          {ModalText.CANCEL}
         </button>
         <span className="psw">
-          You don't Have an account ?{" "}
+          {LoginText.SUGGESTION}
           <span className="link" onClick={() => setRegister(!login)}>
-            Register?
+            {LoginText.LINK}
           </span>
         </span>
       </div>

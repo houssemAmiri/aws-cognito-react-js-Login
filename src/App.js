@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalComp from "./Components/ModalComp";
 import { signOut } from "./lib/aws-auth";
 import "./App.css";
-
+import { Home } from "./constants/text";
 function App() {
   // state
   const [authState, setAuthState] = React.useState(false);
@@ -26,14 +26,14 @@ function App() {
         {authState && user ? (
           <>
             <button className="cancelbtn" onClick={() => signOut(setAuthState)}>
-              Log out
+              {Home.LOGOUT}
             </button>
-            <p>This is your token:</p>
+            <p>{Home.TOKEN}</p>
             <p>{token}</p>
           </>
         ) : (
           <button className="cancelbtn" onClick={openModal}>
-            Login
+            {Home.LOGIN}
           </button>
         )}
       </header>
